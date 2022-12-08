@@ -246,6 +246,9 @@ def get_pos(basepath, epoch_df, beh_epochs, task_idx):
     # flip x coord
     if not outbound_laps.isempty:
         pos = flip_pos_within_epoch(pos, outbound_laps)
+        
+    # make min pos 2
+    pos._data = (pos.data - np.nanmin(pos.data)) + 2
 
     # locate laps with the majority in state 1 or 2
     lap_id = dissociate_laps_by_states(

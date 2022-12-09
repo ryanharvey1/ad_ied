@@ -1,15 +1,4 @@
-opts = delimitedTextImportOptions("NumVariables", 2);
-opts.DataLines = [2, Inf];
-opts.Delimiter = ",";
-opts.VariableNames = ["VarName1", "basepath"];
-opts.VariableTypes = ["double", "string"];
-opts.ExtraColumnsRule = "ignore";
-opts.EmptyLineRule = "read";
-opts = setvaropts(opts, "basepath", "WhitespaceRule", "preserve");
-opts = setvaropts(opts, "basepath", "EmptyFieldRule", "auto");
-opts = setvaropts(opts, "VarName1", "ThousandsSeparator", ",");
-df = readtable("D:\github\ad_ied\data\sessions.csv", opts);
-df.basepath = {df.basepath{:}}'
+df = readtable("D:\github\ad_ied\data\sessions.csv",'Delimiter',',');
 % visual of current edges (states) for linearized pos
 %    ___ ___
 %   | 2 | 1 |

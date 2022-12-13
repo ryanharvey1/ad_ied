@@ -246,7 +246,7 @@ def get_pos(basepath, epoch_df, beh_epochs, task_idx):
     # flip x coord
     if not outbound_laps.isempty:
         pos = flip_pos_within_epoch(pos, outbound_laps)
-        
+
     # make min pos 2
     pos._data = (pos.data - np.nanmin(pos.data)) + 2
 
@@ -294,7 +294,7 @@ def get_tuning_curves(
         extmin=ext_xmin,
         extmax=ext_xmax,
         sigma=tuning_curve_sigma,
-        min_duration=0,
+        min_duration=.1,
     )
     return tc, st_run, bst_run
 

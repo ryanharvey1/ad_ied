@@ -1,4 +1,8 @@
-df = readtable("D:\github\ad_ied\data\sessions.csv",'Delimiter',',');
+% df = readtable("D:\github\ad_ied\data\sessions.csv",'Delimiter',',');
+
+files = dir('X:\AD_sessions\**\*session.mat');
+df.basepath = {files.folder};
+
 % visual of current edges (states) for linearized pos
 %    ___ ___
 %   | 2 | 1 |
@@ -29,7 +33,7 @@ if ~isfield(behavior,'states')
 end
 states = unique(behavior.states);
 states = states(~isnan(states));
-if length(states) == 3
+if length(states) == 3 || isempty(states)
     return
 end
 % drop states 2 and 4 down to the level of the other two arms (1&3) so

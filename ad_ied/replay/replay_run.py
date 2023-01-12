@@ -5,8 +5,6 @@ from ripple_heterogeneity.utils import functions, loading, compress_repeated_epo
 import os
 import pandas as pd
 from scipy import stats
-import multiprocessing
-from joblib import Parallel, delayed
 import pickle
 import copy
 import warnings
@@ -61,40 +59,6 @@ def decode_and_shuff(bst, tc, pos, n_shuffles=500):
         )
 
     return rvalue, median_error, rvalue_time_swap, median_error_time_swap
-
-
-def get_significant_events(scores, shuffled_scores, q=95):
-    """Return the significant events based on percentiles.
-    NOTE: The score is compared to the distribution of scores obtained
-    using the randomized data and a Monte Carlo p-value can be computed
-    according to: p = (r+1)/(n+1), where r is the number of
-    randomizations resulting in a score higher than (ETIENNE EDIT: OR EQUAL TO?)
-    the real score and n is the total number of randomizations performed.
-    Parameters
-    ----------
-    scores : array of shape (n_events,)
-    shuffled_scores : array of shape (n_shuffles, n_events)
-    q : float in range of [0,100]
-        Percentile to compute, which must be between 0 and 100 inclusive.
-    Returns
-    -------
-    sig_event_idx : array of shape (n_sig_events,)
-        Indices (from 0 to n_events-1) of significant events.
-    pvalues :
-    """
-
-    n, _ = shuffled_scores.shape
-    r = np.sum(abs(shuffled_scores) >= abs(scores), axis=0)
-    pvalues = (r + 1) / (n + 1)
-
-    # set nan scores to 1
-    pvalues[np.isnan(scores)] = 1
-
-    sig_event_idx = np.argwhere(
-        scores > np.percentile(shuffled_scores, axis=0, q=q)
-    ).squeeze()
-
-    return np.atleast_1d(sig_event_idx), np.atleast_1d(pvalues)
 
 
 def get_features(bst_placecells, posteriors, bdries, mode_pth, pos, dp=3):
@@ -251,9 +215,7 @@ def get_pos(basepath, epoch_df, beh_epochs, task_idx):
     pos._data = (pos.data - np.nanmin(pos.data)) + 2
 
     # locate laps with the majority in state 1 or 2
-    lap_id = dissociate_laps_by_states(
-        states, outbound_laps, states_of_interest=[1, 2]
-    )
+    lap_id = dissociate_laps_by_states(states, outbound_laps, states_of_interest=[1, 2])
 
     right_epochs = nel.EpochArray(data=outbound_laps.data[lap_id == 1, :])
     left_epochs = nel.EpochArray(data=outbound_laps.data[lap_id == 2, :])
@@ -294,7 +256,7 @@ def get_tuning_curves(
         extmin=ext_xmin,
         extmax=ext_xmax,
         sigma=tuning_curve_sigma,
-        min_duration=.1,
+        min_duration=0.1,
     )
     return tc, st_run, bst_run
 
@@ -333,11 +295,7 @@ def restrict_to_place_cells(
 
 
 def handle_canidate_events(
-    basepath,
-    ripples,
-    expand_canidate_by_mua,
-    min_rip_dur,
-    expand_ripple=0.05
+    basepath, ripples, expand_canidate_by_mua, min_rip_dur, expand_ripple=0.05
 ):
     """
     This function takes a list of ripple events and expands them by MUA events
@@ -376,7 +334,7 @@ def handle_canidate_events(
         ripple_epochs = nel.EpochArray(np.array([ripples.start, ripples.stop]).T)
 
     ripple_epochs = ripple_epochs.merge()
-    
+
     # reassign ripple epochs to ripples dataframe
     ripples = pd.DataFrame()
     ripples["start"] = ripple_epochs.starts
@@ -403,7 +361,7 @@ def run(
     restrict_manipulation=True,  # whether to restrict manipulation epochs
     shuffle_parallel=True,  # whether to shuffle in parallel
     ds_beh_decode=0.2,  # bin width to bin st for decoding behavior
-    expand_ripple=0.05
+    expand_ripple=0.05,
 ):
     """
     Main function that conducts the replay analysis
@@ -468,10 +426,13 @@ def run(
     position_df = loading.load_animal_behavior(basepath)
 
     # find tmaze task
-    name = position_df[~position_df.linearized.isnull()].epochs.value_counts().sort_values(ascending=False).index[0]
-    task_idx = int(
-        np.where(epoch_df.name == name)[0][0]
+    name = (
+        position_df[~position_df.linearized.isnull()]
+        .epochs.value_counts()
+        .sort_values(ascending=False)
+        .index[0]
     )
+    task_idx = int(np.where(epoch_df.name == name)[0][0])
 
     pos, right_epochs, left_epochs, states, position_df_no_nan = get_pos(
         basepath, epoch_df, beh_epochs, task_idx
@@ -483,11 +444,7 @@ def run(
     # here we will only take ripples with high mua,
     #   plus the bounds of the candidate events will be defined by mua
     ripples, ripple_epochs = handle_canidate_events(
-        basepath,
-        ripples,
-        expand_canidate_by_mua,
-        min_rip_dur,
-        expand_ripple
+        basepath, ripples, expand_canidate_by_mua, min_rip_dur, expand_ripple
     )
 
     # iter through both running directions
@@ -530,7 +487,9 @@ def run(
             bst_run_beh, tc, pos[dir_epoch], n_shuffles=behav_shuff
         )
         # check decoding quality against chance distribution
-        _, decoding_r2_pval = get_significant_events(decoding_r2, decoding_r2_shuff)
+        _, decoding_r2_pval, _ = functions.get_significant_events(
+            decoding_r2, decoding_r2_shuff
+        )
 
         # get ready to decode replay
         # bin data for replay (20ms default)
@@ -555,10 +514,9 @@ def run(
             continue
 
         current_ripples = pd.DataFrame()
-        current_ripples["start"] = bst_placecells.support.data[:,0]
-        current_ripples["stop"] = bst_placecells.support.data[:,1]
+        current_ripples["start"] = bst_placecells.support.data[:, 0]
+        current_ripples["stop"] = bst_placecells.support.data[:, 1]
         current_ripples["duration"] = current_ripples["stop"] - current_ripples["start"]
-        
 
         # decode each ripple event
         posteriors, bdries, mode_pth, mean_pth = nel.decoding.decode1D(
@@ -574,8 +532,12 @@ def run(
         )
 
         # find sig events using time and column shuffle distributions
-        _, score_pval_time_swap = get_significant_events(scores, scores_time_swap)
-        _, score_pval_col_cycle = get_significant_events(scores, scores_col_cycle)
+        _, score_pval_time_swap, score_z_time_swap = functions.get_significant_events(
+            scores, scores_time_swap
+        )
+        _, score_pval_col_cycle, score_z_col_cycle = functions.get_significant_events(
+            scores, scores_col_cycle
+        )
 
         (traj_dist, traj_speed, traj_step, replay_type, position) = get_features(
             bst_placecells, posteriors, bdries, mode_pth, pos[dir_epoch], dp=s_binsize
@@ -607,6 +569,8 @@ def run(
         temp_df["intercept"] = intercept
         temp_df["score_pval_time_swap"] = score_pval_time_swap
         temp_df["score_pval_col_cycle"] = score_pval_col_cycle
+        temp_df["score_z_time_swap"] = score_z_time_swap
+        temp_df["score_z_col_cycle"] = score_z_col_cycle
         temp_df["traj_dist"] = traj_dist
         temp_df["traj_speed"] = traj_speed
         temp_df["traj_step"] = traj_step
@@ -620,7 +584,6 @@ def run(
         results[direction_str[dir_i]]["total_units"] = total_units
 
     return results
-
 
 
 def load_results(save_path, pre_task_post=False, verbose=False):

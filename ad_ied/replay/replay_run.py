@@ -613,7 +613,7 @@ def load_results(save_path, pre_task_post=False, verbose=False):
             epoch_df = loading.load_epoch(basepath)
 
         if pre_task_post:
-
+            epoch_df = compress_repeated_epochs.main(epoch_df, epoch_name="sleep")
             pattern_idx, _ = functions.find_epoch_pattern(
                 epoch_df.environment, ["sleep", "tmaze", "sleep"]
             )
@@ -652,6 +652,7 @@ def load_results(save_path, pre_task_post=False, verbose=False):
                 if len(results[key_]["df"]) > 0:
                     results[key_]["df"]["epoch"] = "unknown"
                     epoch_df = loading.load_epoch(results[key_]["session"])
+                    epoch_df = compress_repeated_epochs.main(epoch_df, epoch_name="sleep")
                     pattern_idx, _ = functions.find_epoch_pattern(
                         epoch_df.environment, ["sleep", "tmaze", "sleep"]
                     )

@@ -198,9 +198,10 @@ def get_pos(basepath, epoch_df, beh_epochs, task_idx):
     states = states[beh_epochs[task_idx]]
 
     # get outbound and inbound epochs
-    inbound_laps, outbound_laps = functions.get_linear_track_lap_epochs(
+    outbound_laps, inbound_laps = functions.get_linear_track_lap_epochs(
         pos.abscissa_vals, pos.data[0], newLapThreshold=20
     )
+
     inbound_laps = functions.find_good_lap_epochs(pos, inbound_laps)
     outbound_laps = functions.find_good_lap_epochs(pos, outbound_laps)
 

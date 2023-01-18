@@ -12,6 +12,8 @@ __pycache__/
 *.jpeg
 *.png
 
+\replay_example_individuals
+
 # Distribution / packaging
 .Python
 build/

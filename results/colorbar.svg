@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="122.035125pt" height="87.081875pt" viewBox="0 0 122.035125 87.081875" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2023-01-17T11:35:05.877932</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.6.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 87.081875 
+L 122.035125 87.081875 
+L 122.035125 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 24.0425 63.039375 
+L 68.6825 63.039375 
+L 68.6825 7.599375 
+L 24.0425 7.599375 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="QuadMesh_1">
+    <path d="M 24.0425 7.599375 
+L 46.3625 7.599375 
+L 46.3625 35.319375 
+L 24.0425 35.319375 
+L 24.0425 7.599375 
+" clip-path="url(#pdb0176678b)" style="fill: #ffffff"/>
+    <path d="M 46.3625 7.599375 
+L 68.6825 7.599375 
+L 68.6825 35.319375 
+L 46.3625 35.319375 
+L 46.3625 7.599375 
+" clip-path="url(#pdb0176678b)"/>
+    <path d="M 24.0425 35.319375 
+L 46.3625 35.319375 
+L 46.3625 63.039375 
+L 24.0425 63.039375 
+L 24.0425 35.319375 
+" clip-path="url(#pdb0176678b)"/>
+    <path d="M 46.3625 35.319375 
+L 68.6825 35.319375 
+L 68.6825 63.039375 
+L 46.3625 63.039375 
+L 46.3625 35.319375 
+" clip-path="url(#pdb0176678b)" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m216a5dfe66" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m216a5dfe66" x="35.2025" y="63.039375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif; text-anchor: middle" x="35.2025" y="78.218125" transform="rotate(-0 35.2025 78.218125)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m216a5dfe66" x="57.5225" y="63.039375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif; text-anchor: middle" x="57.5225" y="78.218125" transform="rotate(-0 57.5225 78.218125)">1</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_3">
+      <defs>
+       <path id="m88faabf638" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m88faabf638" x="24.0425" y="21.459375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif" transform="translate(13.27875 24.004375) rotate(-90)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m88faabf638" x="24.0425" y="49.179375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif" transform="translate(13.27875 51.724375) rotate(-90)">1</text>
+     </g>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_3">
+    <path d="M 71.4725 63.039375 
+L 74.2445 63.039375 
+L 74.2445 10.239375 
+L 71.4725 10.239375 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p8bb98e5a63)" style="fill: #ffffff; stroke: #ffffff; stroke-width: 0.01; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 71.4725 10.239375 
+L 72.8585 7.599375 
+L 74.2445 10.239375 
+"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAsAAADcCAYAAACml1uxAAABEUlEQVR4nO2ZQQ7DMAgEQer/f2zoteqJibTS2nHPI0QmG0yT7O6O4e8D2PgUgVHlJaus61nXRnUReMxedf/wmLW5QPZYFbDRgXoeszbqithgN2VDdSwbujx7qNPZMFEHCkMbOx4TSN0CsXOZ/EJ4ebSBYNkdbDY3xqy0ZxN4ydSdHyRUeczaZKNINkLY85hVBgktrqgNpo6Ff8wqs2GSZ+h5zCqzYTIYkbpCbZx/wnq04RGku6o9h++q9gOjkaub/CbZ0B3Hwd5vIFj27osNmR3VIRvLoQ2o7vBsKNXtmA2L/1bou9WO2YDw4dl4gToPz7IPoDtmQzdyX7CqqXq+q9pj2GZVs8iz7IHNzBzTGaD0F1ZRZpDGzPsEAAAAAElFTkSuQmCC" id="image3aaf6179b3" transform="scale(1 -1) translate(0 -52.8)" x="71.52" y="-10.08" width="2.64" height="52.8"/>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_3">
+     <g id="line2d_5">
+      <defs>
+       <path id="m830ed12139" d="M 0 0 
+L 3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m830ed12139" x="74.2445" y="63.039375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif; text-anchor: start" x="83.3445" y="66.07875" transform="rotate(-0 83.3445 66.07875)">0.00</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m830ed12139" x="74.2445" y="36.639375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif; text-anchor: start" x="83.3445" y="39.67875" transform="rotate(-0 83.3445 39.67875)">0.05</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m830ed12139" x="74.2445" y="10.239375" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font: 8px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif; text-anchor: start" x="83.3445" y="13.27875" transform="rotate(-0 83.3445 13.27875)">0.10</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font: 10px 'DejaVu Serif', 'Bitstream Vera Serif', 'Computer Modern Roman', 'New Century Schoolbook', 'Century Schoolbook L', 'Utopia', 'ITC Bookman', 'Bookman', 'Nimbus Roman No9 L', 'Times New Roman', 'Times', 'Palatino', 'Charter', serif; text-anchor: middle" x="112.755438" y="36.639375" transform="rotate(-90 112.755438 36.639375)">posterior prob.</text>
+    </g>
+   </g>
+   <g id="LineCollection_1"/>
+   <g id="patch_6">
+    <path d="M 71.4725 63.039375 
+L 72.8585 63.039375 
+L 74.2445 63.039375 
+L 74.2445 10.239375 
+L 72.8585 7.599375 
+L 71.4725 10.239375 
+L 71.4725 63.039375 
+z
+" style="fill: none"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdb0176678b">
+   <rect x="24.0425" y="7.599375" width="44.64" height="55.44"/>
+  </clipPath>
+  <clipPath id="p8bb98e5a63">
+   <rect x="71.4725" y="10.239375" width="2.772" height="52.8"/>
+  </clipPath>
+ </defs>
+</svg>

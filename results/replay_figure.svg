@@ -25,8 +25,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.0482005"
-     inkscape:cx="387.80749"
-     inkscape:cy="167.4298"
+     inkscape:cx="361.09504"
+     inkscape:cy="243.75108"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -4730,5 +4730,38 @@
         </g>
       </g>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="0.50483346"
+       y="76.143257"
+       id="text150098"><tspan
+         sodipodi:role="line"
+         id="tspan150096"
+         style="font-size:6.35px;stroke-width:0.264583"
+         x="0.50483346"
+         y="76.143257">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round"
+       x="43.933594"
+       y="76.053337"
+       id="text150098-5"><tspan
+         sodipodi:role="line"
+         id="tspan150096-4"
+         style="font-size:6.35px;stroke-width:0.264583"
+         x="43.933594"
+         y="76.053337">G</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round"
+       x="167.20058"
+       y="76.143257"
+       id="text150098-5-5"><tspan
+         sodipodi:role="line"
+         id="tspan150096-4-6"
+         style="font-size:6.35px;stroke-width:0.264583"
+         x="167.20058"
+         y="76.143257">H</tspan></text>
   </g>
 </svg>

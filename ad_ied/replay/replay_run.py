@@ -603,7 +603,7 @@ def load_results(save_path, pre_task_post=False, verbose=False):
             results = pickle.load(f)
         if results is None:
             continue
-        if (results["right_epochs"] == {}) & (results["right_epochs"] == {}):
+        if (results["right_epochs"] == {}) & (results["left_epochs"] == {}):
             continue
         try:
             basepath = results["right_epochs"]["session"]

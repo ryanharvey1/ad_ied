@@ -56,7 +56,11 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
     try:
         theta_epochs = nel.EpochArray(state_dict["THETA"])
     except:
-        theta_epochs = nel.EpochArray(state_dict["WAKEtheta"])
+        try:
+            theta_epochs = nel.EpochArray(state_dict["WAKEtheta"])
+        except:
+            theta_epochs = nel.EpochArray(state_dict["WAKEtheta_ThDt"])
+
     nrem_epochs = nel.EpochArray(state_dict["NREMstate"])
 
     # define pre / task / post epochs
@@ -94,7 +98,7 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
     if assembly_react.n_assemblies() == 0:
         return
 
-    assembly_act = assembly_react.get_assembly_act()
+    assembly_act = assembly_react.get_assembly_act(epoch = pre | post)
 
     # first get peth for assemblies around pre and post IEDs
 

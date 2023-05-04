@@ -28,10 +28,19 @@ def get_mutually_exclusive_epochs(
     return ied_obs_pre, ied_obs_post
 
 
-def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
+def run(
+    basepath: str,
+    restrict_to_nrem=False,
+    restrict_pre_post_time=None,
+    z_mat_dt=0.002,
+    peth_window=0.5,
+    
+):
 
     # initiate model
-    assembly_react = assembly_reactivation.AssemblyReact(basepath=basepath)
+    assembly_react = assembly_reactivation.AssemblyReact(
+        basepath=basepath, z_mat_dt=z_mat_dt
+    )
     assembly_react.load_data()
 
     if assembly_react.isempty:
@@ -98,7 +107,7 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
     if assembly_react.n_assemblies() == 0:
         return
 
-    assembly_act = assembly_react.get_assembly_act(epoch = pre | post)
+    assembly_act = assembly_react.get_assembly_act(epoch=pre | post)
 
     # first get peth for assemblies around pre and post IEDs
 
@@ -107,7 +116,7 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
         assembly_act.data.T,
         ied_epoch_array[pre].starts,
         sampling_rate=assembly_act.fs,
-        window=[-0.5, 0.5],
+        window=[-peth_window, peth_window],
     )
 
     peth_ied_avg_post, time_lags = functions.event_triggered_average(
@@ -115,7 +124,7 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
         assembly_act.data.T,
         ied_epoch_array[post].starts,
         sampling_rate=assembly_act.fs,
-        window=[-0.5, 0.5],
+        window=[-peth_window, peth_window],
     )
 
     # gather some reponse metrics
@@ -146,7 +155,9 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
     response_df_ied["basepath"] = basepath
 
     peth_ied_avg_pre = pd.DataFrame(
-        index=time_lags, columns=np.arange(peth_ied_avg_pre.shape[1]), data=peth_ied_avg_pre
+        index=time_lags,
+        columns=np.arange(peth_ied_avg_pre.shape[1]),
+        data=peth_ied_avg_pre,
     )
     peth_ied_avg_post = pd.DataFrame(
         index=time_lags,
@@ -155,7 +166,10 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
     )
 
     peth = pd.concat(
-        [peth, pd.concat([peth_ied_avg_pre, peth_ied_avg_post], axis=1, ignore_index=True)],
+        [
+            peth,
+            pd.concat([peth_ied_avg_pre, peth_ied_avg_post], axis=1, ignore_index=True),
+        ],
         axis=1,
         ignore_index=True,
     )
@@ -172,14 +186,14 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
             assembly_act.data.T,
             assembly_react.ripples[pre & pre_post_restrict_epoch].starts,
             sampling_rate=assembly_act.fs,
-            window=[-0.5, 0.5],
+            window=[-peth_window, peth_window],
         )
         peth_avg_post, time_lags = functions.event_triggered_average(
             assembly_act.abscissa_vals,
             assembly_act.data.T,
             assembly_react.ripples[post & pre_post_restrict_epoch].starts,
             sampling_rate=assembly_act.fs,
-            window=[-0.5, 0.5],
+            window=[-peth_window, peth_window],
         )
 
         response_df_temp = pd.DataFrame()
@@ -225,10 +239,7 @@ def run(basepath: str, restrict_to_nrem=False, restrict_pre_post_time=None):
 
     response_df["basepath"] = basepath
 
-    results = {
-        "results_df": response_df,
-        "peth": peth
-    }
+    results = {"results_df": response_df, "peth": peth}
 
     return results
 
@@ -264,6 +275,6 @@ def load_results(save_path: str, verbose: bool = False):
         if results_["peth"].shape[0] == 501:
             test = 0
         results = pd.concat([results, results_["results_df"]], ignore_index=True)
-        peth = pd.concat([peth, results_["peth"]], axis=1)
+        peth = pd.concat([peth, results_["peth"]], axis=1, ignore_index=True)
 
     return results, peth

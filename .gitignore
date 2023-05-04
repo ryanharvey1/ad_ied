@@ -13,6 +13,7 @@ __pycache__/
 *.png
 
 \replay_example_individuals
+\all_replay_examples
 
 # Distribution / packaging
 .Python
